@@ -1,0 +1,22 @@
+GameObject
+   „¯ Character
+   „«     „¯ Player
+   „«     „«
+   „«     „¯ EnemyBase
+   „«            „¯ ShootEnemy
+   „«            „¯ RunEnemy
+   „¯ Stage
+
+<GameObject>
+public:
+   void Update() = 0;
+   void Render( SCENE_INIT_INFO ) = 0;
+   Void Collision( CCollsionManager ) = 0;
+   
+   CCollsionManager GetCollider();
+   
+protected:
+   D3DXVECTOR3 m_vPosition;
+   D3DXVECTOR3 m_vRotation;
+   CCollsionManager m_pCollider;
+   

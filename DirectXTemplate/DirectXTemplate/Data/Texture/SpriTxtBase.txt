@@ -1,0 +1,5 @@
+#dispSize	// 表示幅、高さ
+#baseSize	// 元画像幅、高さ
+#strideSize	// 1コマ当たりの幅、高さ
+#dispPos	// 表示座標.
+#frameNum	// 最大フレーム数

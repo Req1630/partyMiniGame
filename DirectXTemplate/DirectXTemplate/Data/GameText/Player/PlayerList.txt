@@ -1,0 +1,6 @@
+Agumon,アグモン
+KERORO,ケロロ
+MickeyMouse,ミッキー
+Sayaka,サヤカ
+SpongeBob,スポンジボブ
+Towa,トワ

@@ -1,0 +1,4 @@
+// ウィンドウ名.
+#WindowTitle,ウィンドウ名
+// APP名.
+#AppName,App名
