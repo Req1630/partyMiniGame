@@ -35,6 +35,7 @@ void CPlayerManager::Update()
 //-------------------------------.
 void CPlayerManager::Collision( pCollisionManager pColl )
 {
+	// 各プレイヤー同士の当たり判定.
 	for( size_t i = 0; i < m_PlayerList.size(); i++ ){
 		for( size_t j = 0; j < m_PlayerList.size(); j++ ){
 			if( i == j ) continue;

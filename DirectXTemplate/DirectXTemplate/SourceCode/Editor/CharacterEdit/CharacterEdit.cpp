@@ -23,8 +23,8 @@ CCharacterEdit::~CCharacterEdit()
 
 void CCharacterEdit::Render( scene::CSceneBase::SCENE_INIT_INFO& info )
 {
-	AdjustmentPlayer();
 	ModelRender( info );
+	AdjustmentPlayer();
 
 	ImGui::SetNextWindowSize( WINDOW_SIZE, ImGuiCond_::ImGuiCond_Once );
 	ImGui::SetNextWindowPos( RENDER_POSITION, ImGuiCond_::ImGuiCond_Once );
@@ -111,39 +111,41 @@ void CCharacterEdit::ListBoxRender()
 //-------------------------------.
 void CCharacterEdit::AdjustmentPlayer()
 {
-	// 座標の設定.
-	if( GetAsyncKeyState('P') & 0x8000 ){
-		if( GetAsyncKeyState(VK_UP) & 0x0001 ) m_PlayerInfo.vPosition.y += CHANGE_VALUE;
-		if( GetAsyncKeyState(VK_DOWN) & 0x0001 ) m_PlayerInfo.vPosition.y -= CHANGE_VALUE;
-	}
-	// 回転の設定.
-	if( GetAsyncKeyState('R') & 0x8000 ){
-		if( GetAsyncKeyState(VK_UP) & 0x0001 ) m_PlayerInfo.vRotation.y += CHANGE_VALUE;
-		if( GetAsyncKeyState(VK_DOWN) & 0x0001 ) m_PlayerInfo.vRotation.y -= CHANGE_VALUE;
-	}
-	// モデルサイズの設定.
-	if( GetAsyncKeyState('S') & 0x8000 ){
-		if( GetAsyncKeyState(VK_UP) & 0x0001 ) m_PlayerInfo.ModelScale += CHANGE_VALUE;
-		if( GetAsyncKeyState(VK_DOWN) & 0x0001 ) m_PlayerInfo.ModelScale -= CHANGE_VALUE;
-	}
-	// スフィアの座標の設定.
-	if( GetAsyncKeyState('I') & 0x8000 ){
-		if( GetAsyncKeyState(VK_UP) & 0x0001 ) m_PlayerInfo.vSphereAdjPosition.y += CHANGE_VALUE;
-		if( GetAsyncKeyState(VK_DOWN) & 0x0001 ) m_PlayerInfo.vSphereAdjPosition.y -= CHANGE_VALUE;
-		if( m_pStaticMesh != nullptr ){
-			m_pCollder->SetSphereAdjPosition( m_PlayerInfo.vSphereAdjPosition );
+	if( GetAsyncKeyState('O') & 0x8000 ){
+		// 座標の設定.
+		if( GetAsyncKeyState('P') & 0x8000 ){
+			if( GetAsyncKeyState(VK_UP) & 0x0001 ) m_PlayerInfo.vPosition.y += CHANGE_VALUE;
+			if( GetAsyncKeyState(VK_DOWN) & 0x0001 ) m_PlayerInfo.vPosition.y -= CHANGE_VALUE;
 		}
-	}
-	// スフィアの半径の設定.
-	if( GetAsyncKeyState('D') & 0x8000 ){
-		if( GetAsyncKeyState(VK_UP) & 0x0001 ) m_PlayerInfo.SphereAdjRdius += CHANGE_VALUE;
-		if( GetAsyncKeyState(VK_DOWN) & 0x0001 ) m_PlayerInfo.SphereAdjRdius -= CHANGE_VALUE;
-		if( m_pStaticMesh != nullptr ){
-			m_pCollder->SetSphereAdjRadius( m_PlayerInfo.SphereAdjRdius );
-			m_pCollder->Init( m_pStaticMesh->GetMesh(),
-				&m_PlayerInfo.vPosition,
-				&m_PlayerInfo.vRotation,
-				&m_PlayerInfo.ModelScale );
+		// 回転の設定.
+		if( GetAsyncKeyState('R') & 0x8000 ){
+			if( GetAsyncKeyState(VK_UP) & 0x0001 ) m_PlayerInfo.vRotation.y += CHANGE_VALUE;
+			if( GetAsyncKeyState(VK_DOWN) & 0x0001 ) m_PlayerInfo.vRotation.y -= CHANGE_VALUE;
+		}
+		// モデルサイズの設定.
+		if( GetAsyncKeyState('S') & 0x8000 ){
+			if( GetAsyncKeyState(VK_UP) & 0x0001 ) m_PlayerInfo.ModelScale += CHANGE_VALUE;
+			if( GetAsyncKeyState(VK_DOWN) & 0x0001 ) m_PlayerInfo.ModelScale -= CHANGE_VALUE;
+		}
+		// スフィアの座標の設定.
+		if( GetAsyncKeyState('I') & 0x8000 ){
+			if( GetAsyncKeyState(VK_UP) & 0x0001 ) m_PlayerInfo.vSphereAdjPosition.y += CHANGE_VALUE;
+			if( GetAsyncKeyState(VK_DOWN) & 0x0001 ) m_PlayerInfo.vSphereAdjPosition.y -= CHANGE_VALUE;
+			if( m_pStaticMesh != nullptr ){
+				m_pCollder->SetSphereAdjPosition( m_PlayerInfo.vSphereAdjPosition );
+			}
+		}
+		// スフィアの半径の設定.
+		if( GetAsyncKeyState('D') & 0x8000 ){
+			if( GetAsyncKeyState(VK_UP) & 0x0001 ) m_PlayerInfo.SphereAdjRdius += CHANGE_VALUE;
+			if( GetAsyncKeyState(VK_DOWN) & 0x0001 ) m_PlayerInfo.SphereAdjRdius -= CHANGE_VALUE;
+			if( m_pStaticMesh != nullptr ){
+				m_pCollder->SetSphereAdjRadius( m_PlayerInfo.SphereAdjRdius );
+				m_pCollder->Init( m_pStaticMesh->GetMesh(),
+					&m_PlayerInfo.vPosition,
+					&m_PlayerInfo.vRotation,
+					&m_PlayerInfo.ModelScale );
+			}
 		}
 	}
 }

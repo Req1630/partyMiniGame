@@ -8,6 +8,7 @@ class CStage;	// ステージクラス.
 class CGround;	// グラウンドクラス.
 
 class CPlayerManager;	// プレイヤークラス.
+class CEnemyManager;	// 敵クラス.
 
 namespace scene
 {
@@ -32,6 +33,7 @@ namespace scene
 		std::shared_ptr<CGround>	m_pGround;	// グラウンドクラス.
 
 		std::shared_ptr<CPlayerManager>	m_pPlayerManager;	// プレイヤークラス.
+		std::shared_ptr<CEnemyManager>	m_pEnemyManager;	// 敵クラス.
 	};
 };
 

@@ -5,6 +5,7 @@
 
 class CRunEnemy : public CEnemyBase
 {
+	const char* MODEL_NAME = "GhostA";	// モデル名.
 public:
 	CRunEnemy();
 	virtual ~CRunEnemy();
@@ -19,6 +20,9 @@ public:
 private:
 	// 移動関数.
 	virtual void Move() override;
+
+private:
+	std::shared_ptr<CDX9StaticMesh> m_pStaticMesh;	// スタティックメッシュ.
 };
 
 #endif	// #ifndef RUN_ENEMY_H.

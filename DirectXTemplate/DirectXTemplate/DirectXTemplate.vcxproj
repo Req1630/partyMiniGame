@@ -159,6 +159,7 @@
     <ClCompile Include="SourceCode\Editor\ControllerEdit\ControllerEdit.cpp" />
     <ClCompile Include="SourceCode\GameObject\Character\Character.cpp" />
     <ClCompile Include="SourceCode\GameObject\Character\Enemy\EnemyBase.cpp" />
+    <ClCompile Include="SourceCode\GameObject\Character\Enemy\EnemyManager\EnemyManager.cpp" />
     <ClCompile Include="SourceCode\GameObject\Character\Enemy\RunEnemy\RunEnemy.cpp" />
     <ClCompile Include="SourceCode\GameObject\Character\Enemy\ShootEnemy\ShootEnemy.cpp" />
     <ClCompile Include="SourceCode\GameObject\Character\Player\Player.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="SourceCode\Editor\CharacterEdit\CharacterEdit.h" />
     <ClInclude Include="SourceCode\GameObject\Character\Character.h" />
     <ClInclude Include="SourceCode\GameObject\Character\Enemy\EnemyBase.h" />
+    <ClInclude Include="SourceCode\GameObject\Character\Enemy\EnemyManager\EnemyManager.h" />
     <ClInclude Include="SourceCode\GameObject\Character\Enemy\RunEnemy\RunEnemy.h" />
     <ClInclude Include="SourceCode\GameObject\Character\Enemy\ShootEnemy\ShootEnemy.h" />
     <ClInclude Include="SourceCode\GameObject\Character\Player\Player.h" />
