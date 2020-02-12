@@ -21,7 +21,7 @@ void CRunEnemy::Update()
 }
 
 // “–‚½‚è”»’èŠÖ”.
-void CRunEnemy::Collision( pCollisionManager )
+void CRunEnemy::Collision( pGameObject )
 {
 }
 

@@ -14,7 +14,7 @@ void CShootEnemy::Update()
 }
 
 // “–‚½‚è”»’èŠÖ”.
-void CShootEnemy::Collision( pCollisionManager )
+void CShootEnemy::Collision( pGameObject )
 {
 }
 

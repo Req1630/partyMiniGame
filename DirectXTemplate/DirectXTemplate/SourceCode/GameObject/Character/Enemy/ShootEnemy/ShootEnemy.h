@@ -12,7 +12,7 @@ public:
 	// XVŠÖ”.
 	virtual void Update() override;
 	// “–‚½‚è”»’èŠÖ”.
-	virtual void Collision( pCollisionManager ) override;
+	virtual void Collision( pGameObject ) override;
 	// •`‰æŠÖ”.
 	virtual void Render( SCENE_INFO& ) override;
 

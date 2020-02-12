@@ -3,6 +3,24 @@
 
 #include "..\GameObject.h"
 
+// プレイヤー情報.
+struct CHARACTER_INFO
+{
+	D3DXVECTOR3	vPosition;			// 座標.
+	D3DXVECTOR3	vRotation;			// 回転.
+	float		ModelScale;			// モデルスケール.
+	D3DXVECTOR3	vSphereAdjPosition;	// スフィアの調整用座標.
+	float		SphereAdjRdius;		// スフィアの調整用半径.
+
+	CHARACTER_INFO()
+		: vPosition				{ 0.0f, 0.0f, 0.0f }
+		, vRotation				{ 0.0f, 0.0f, 0.0f }
+		, ModelScale			( 1.0f )
+		, vSphereAdjPosition	{ 0.0f, 0.0f, 0.0f }
+		, SphereAdjRdius		( 0.0f )
+	{}
+};
+
 class CCharacter : public CGameObject
 {
 public:

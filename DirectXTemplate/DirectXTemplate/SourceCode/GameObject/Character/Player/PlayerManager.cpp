@@ -9,7 +9,6 @@ CPlayerManager::CPlayerManager()
 {
 	// プレイヤーの初期座標読み込み.
 	PlayerInitPosReading();
-
 	// プレイヤーを作成する.
 	PlayerCreating();
 }
@@ -28,20 +27,16 @@ void CPlayerManager::Update()
 		p->Control();
 		p->Update();
 	}
+	// プレイヤー同士の当たり判定.
+	PlayerToCollision();
 }
 
 //-------------------------------.
 // 当たり判定関数.
 //-------------------------------.
-void CPlayerManager::Collision( pCollisionManager pColl )
+void CPlayerManager::Collision( pGameObject gameObj )
 {
-	// 各プレイヤー同士の当たり判定.
-	for( size_t i = 0; i < m_PlayerList.size(); i++ ){
-		for( size_t j = 0; j < m_PlayerList.size(); j++ ){
-			if( i == j ) continue;
-			m_PlayerList[i]->Collision( m_PlayerList[j]->GetCollider() );
-		}
-	}
+	
 }
 
 //-------------------------------.
@@ -51,6 +46,29 @@ void CPlayerManager::Render( SCENE_INFO& info )
 {
 	for( auto& p : m_PlayerList ){
 		p->Render( info );
+	}
+}
+
+//-------------------------------.
+// プレイヤー取得関数.
+//-------------------------------.
+std::shared_ptr<CPlayer> CPlayerManager::GetPlayer( const int index ) const
+{
+	if( static_cast<size_t>(index) >= m_PlayerList.size() ) return nullptr;
+	return m_PlayerList[index];
+}
+
+//-------------------------------.
+// プレイヤー同士の当たり判定.
+//-------------------------------.
+void CPlayerManager::PlayerToCollision()
+{
+	// 各プレイヤー同士の当たり判定.
+	for( size_t i = 0; i < m_PlayerList.size(); i++ ){
+		for( size_t j = 0; j < m_PlayerList.size(); j++ ){
+			if( i == j ) continue;
+			m_PlayerList[i]->PlayerToCollision( m_PlayerList[j] );
+		}
 	}
 }
 
@@ -72,7 +90,7 @@ void CPlayerManager::PlayerCreating()
 		// プレイヤー人数設定.
 		m_PlayerList[i]->SetPlayerNumber( i );
 
-		PLAYER_INFO playerInfo;
+		CHARACTER_INFO playerInfo;
 		// プレイヤー情報の読込.
 		PlayerParameterReading( playerInfo, m_PlayModelList[i] );
 		playerInfo.vPosition.x = m_InitPositionList[i].x;
@@ -106,10 +124,11 @@ void CPlayerManager::PlayerInitPosReading()
 	}
 }
 
+
 //-------------------------------.
 // プレイヤーパラメータの書き込み.
 //-------------------------------.
-void CPlayerManager::PlayerParameterWriting( const PLAYER_INFO& playerInfo, std::string playerName )
+void CPlayerManager::PlayerParameterWriting( const CHARACTER_INFO& playerInfo, std::string playerName )
 {
 	std::string path = CPlayerManager::PLAYER_PARAMETER_FILE_PATH;
 	path += playerName + CPlayerManager::PLAYER_PARAMETER_FILE_EXE;
@@ -120,7 +139,7 @@ void CPlayerManager::PlayerParameterWriting( const PLAYER_INFO& playerInfo, std:
 //-------------------------------.
 // プレイヤーパラメータの読み込み.
 //-------------------------------.
-void CPlayerManager::PlayerParameterReading( PLAYER_INFO& playerInfo, std::string playerName )
+void CPlayerManager::PlayerParameterReading( CHARACTER_INFO& playerInfo, std::string playerName )
 {
 	std::string path = CPlayerManager::PLAYER_PARAMETER_FILE_PATH;
 	path += playerName + CPlayerManager::PLAYER_PARAMETER_FILE_EXE;

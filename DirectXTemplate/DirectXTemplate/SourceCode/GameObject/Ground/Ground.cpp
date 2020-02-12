@@ -27,7 +27,7 @@ void CGround::Update()
 //-----------------------.
 // “–‚½‚è”»’èŠÖ”.
 //-----------------------.
-void CGround::Collision( pCollisionManager )
+void CGround::Collision( pGameObject )
 {
 }
 

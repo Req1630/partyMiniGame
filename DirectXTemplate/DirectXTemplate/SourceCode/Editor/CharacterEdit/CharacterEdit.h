@@ -15,10 +15,10 @@ class CCollsionManager;
 class CCharacterEdit
 {
 private:
-	const ImVec2 WINDOW_SIZE		= { 350.0f, 350.0f };	// ウィンドウサイズ.
-	const ImVec2 RENDER_POSITION	= { 10.0f, 350.0f };	// 描画座標.
-	const float CHANGE_VALUE		= 0.001f;				// 変更用の値.
-	const char* PLAYER_LIST_FILE_PATH		= "Data\\GameText\\Player\\PlayerList.txt";
+	const ImVec2 WINDOW_SIZE				= { 350.0f, 350.0f };	// ウィンドウサイズ.
+	const ImVec2 RENDER_POSITION			= { 10.0f, 350.0f };	// 描画座標.
+	const float CHANGE_VALUE				= 0.001f;				// 変更用の値.
+	const char* CHARACTER_LIST_FILE_PATH	= "Data\\GameText\\CharacterList.txt";
 
 public:
 	CCharacterEdit();
@@ -27,29 +27,29 @@ public:
 	void Render( scene::CSceneBase::SCENE_INIT_INFO& );
 
 private:
-	// プレイヤーリストの読み込み.
-	void PlyaerListRead();
+	// キャラクターリストの読み込み.
+	void CharacterListRead();
 	// モデルの描画.
 	void ModelRender( scene::CSceneBase::SCENE_INIT_INFO& );
 	// リストボックスの描画.
 	void ListBoxRender();
-	// プレイヤーの調整.
+	// キャラクターの調整.
 	void AdjustmentPlayer();
-	// プレイヤーパラメータ描画.
-	void PlayerParameterRender();
-	// プレイヤーパラメータの書き込み.
-	void PlayerParameterWriting();
-	// プレイヤーパラメータの読み込み.
-	void PlayerParameterReading();
+	// キャラクターパラメータ描画.
+	void CharacterParameterRender();
+	// キャラクターパラメータの書き込み.
+	void CharacterParameterWriting();
+	// キャラクターパラメータの読み込み.
+	void CharacterParameterReading();
 
 private:
 	std::shared_ptr<CDX9StaticMesh>	m_pStaticMesh;	// スタティックメッシュ.
 	std::shared_ptr<CCollsionManager> m_pCollder;	// 当たり判定.
-	std::vector<std::string> m_PlayerList;			// プレイヤーリスト(英語).
-	std::vector<fs::path> m_PlayerNameList;			// プレイヤーリスト(日本語).
+	std::vector<std::string> m_CharacterList;		// キャラクターリスト(英語).
+	std::vector<fs::path> m_CharacterNameList;		// キャラクターリスト(日本語).
 	int m_NowSelectModel;							// 現在選択しているモデル番号.
 
-	PLAYER_INFO m_PlayerInfo;						// プレイヤー情報.
+	CHARACTER_INFO m_CharacterInfo;					// キャラクター情報.
 
 };
 

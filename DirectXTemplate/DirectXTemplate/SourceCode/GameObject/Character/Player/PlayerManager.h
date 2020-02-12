@@ -5,29 +5,11 @@
 
 #include <vector>
 
-// プレイヤー情報.
-struct PLAYER_INFO
-{
-	D3DXVECTOR3 vPosition;
-	D3DXVECTOR3 vRotation;
-	float ModelScale;
-	D3DXVECTOR3 vSphereAdjPosition;
-	float SphereAdjRdius;
-
-	PLAYER_INFO()
-		: vPosition				{ 0.0f, 0.0f, 0.0f }
-		, vRotation				{ 0.0f, 0.0f, 0.0f }
-		, ModelScale			( 1.0f )
-		, vSphereAdjPosition	{ 0.0f, 0.0f, 0.0f }
-		, SphereAdjRdius		( 0.0f )
-	{}
-};
-
 class CPlayerManager
 {
 private:
 	typedef scene::CSceneBase::SCENE_INIT_INFO SCENE_INFO;
-	typedef std::shared_ptr<CCollsionManager> pCollisionManager;
+	typedef std::shared_ptr<CGameObject> pGameObject;
 
 public:
 	inline static const char* PLAYER_PARAMETER_FILE_PATH	= "Data\\GameText\\Player\\";
@@ -40,15 +22,24 @@ public:
 	// 更新関数.
 	void Update();
 	// 当たり判定関数.
-	void Collision( pCollisionManager );
+	void Collision( pGameObject );
 	// 描画関数.
 	void Render( SCENE_INFO& );
 
+	// プレイヤー取得関数.
+	std::shared_ptr<CPlayer> GetPlayer( const int index ) const;
+	// プレイヤーリストサイズ取得関数.
+	int GetPlayerSize() const { return m_PlayerList.size(); }
+
+
 	// プレイヤーパラメータの書き込み.
-	static void PlayerParameterWriting( const PLAYER_INFO& playerInfo, std::string playerName );
+	static void PlayerParameterWriting( const CHARACTER_INFO& playerInfo, std::string playerName );
 	// プレイヤーパラメータの読み込み.
-	static void PlayerParameterReading( PLAYER_INFO& playerInfo, std::string playerName );
+	static void PlayerParameterReading( CHARACTER_INFO& playerInfo, std::string playerName );
+
 private:
+	// プレイヤー同士の当たり判定.
+	void PlayerToCollision();
 	// プレイヤー作成.
 	void PlayerCreating();
 	// プレイヤー初期座標読込.

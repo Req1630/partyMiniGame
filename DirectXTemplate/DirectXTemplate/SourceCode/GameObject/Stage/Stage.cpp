@@ -26,7 +26,7 @@ void CStage::Update()
 //-----------------------.
 // “–‚½‚è”»’èŠÖ”.
 //-----------------------.
-void CStage::Collision( pCollisionManager )
+void CStage::Collision( pGameObject )
 {
 }
 

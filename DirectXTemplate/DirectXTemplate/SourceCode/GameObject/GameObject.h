@@ -10,6 +10,7 @@ class CGameObject
 protected:
 	typedef scene::CSceneBase::SCENE_INIT_INFO SCENE_INFO;
 	typedef std::shared_ptr<CCollsionManager> pCollisionManager;
+	typedef std::shared_ptr<CGameObject> pGameObject;
 	
 public:
 	CGameObject();
@@ -18,7 +19,7 @@ public:
 	// XVŠÖ”.
 	virtual void Update() = 0;
 	// “–‚½‚è”»’èŠÖ”.
-	virtual void Collision( pCollisionManager ) = 0;
+	virtual void Collision( pGameObject ) = 0;
 	// •`‰æŠÖ”.
 	virtual void Render( SCENE_INFO& ) = 0;
 

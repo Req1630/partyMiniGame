@@ -38,7 +38,19 @@ namespace scene
 		m_pPlayerManager->Update();
 		m_pEnemyManager->Update();
 
-		m_pPlayerManager->Collision( m_pGround->GetCollider() );
+		auto collision = [](
+			std::shared_ptr<CGameObject> player, 
+			std::shared_ptr<CGameObject> enemy )
+		{
+			player->Collision( enemy );
+			enemy->Collision( player );
+		};
+
+		for( int i = 0; i < m_pPlayerManager->GetPlayerSize(); i++ ){
+			for( int j = 0; j < m_pPlayerManager->GetPlayerSize(); j++ ){
+				collision( m_pPlayerManager->GetPlayer(i), m_pPlayerManager->GetPlayer(j) );
+			}
+		}
 	}
 
 	//============================.
@@ -52,5 +64,4 @@ namespace scene
 		m_pPlayerManager->Render( m_Info );
 		m_pEnemyManager->Render( m_Info );
 	}
-
 };

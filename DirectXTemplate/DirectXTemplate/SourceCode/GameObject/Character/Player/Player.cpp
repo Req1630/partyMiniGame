@@ -43,19 +43,14 @@ void CPlayer::Update()
 		}
 	}
 	if( m_pStaticMesh == nullptr ) return;
-
 	Move();
 }
 
 //-------------------------------------------.
 // 当たり判定関数.
 //-------------------------------------------.
-void CPlayer::Collision( pCollisionManager pColl )
+void CPlayer::Collision( pGameObject gameObj )
 {
-	if( m_pCollider->IsShereToShere( pColl->GetSphere() ) ){
-		m_vPosition.x += sinf( m_vRotation.y ) * m_MovePower.x;
-		m_vPosition.z += cosf( m_vRotation.y ) * m_MovePower.y;
-	}
 }
 
 //-------------------------------------------.
@@ -85,6 +80,17 @@ void CPlayer::Control()
 	// コントローラのスティックの傾きを取得.
 	m_MoveVector.x = static_cast<float>(CXInput::LThumbX_Axis( m_PlayerNumber ));
 	m_MoveVector.y = static_cast<float>(CXInput::LThumbY_Axis( m_PlayerNumber ));
+}
+
+//-------------------------------------------.
+// プレイヤー同士の当たり判定.
+//-------------------------------------------.
+void CPlayer::PlayerToCollision( pGameObject gameObj )
+{
+	if( m_pCollider->IsShereToShere( gameObj->GetCollider()->GetSphere() ) ){
+		m_vPosition.x += sinf( m_vRotation.y ) * m_MovePower.x;
+		m_vPosition.z += cosf( m_vRotation.y ) * m_MovePower.y;
+	}
 }
 
 //-------------------------------------------.
@@ -135,12 +141,12 @@ void CPlayer::SetPlayerNumber( const int& playerNumber )
 //-------------------------------------------.
 // プレイヤー情報の設定.
 //-------------------------------------------.
-void CPlayer::SetPlayerParam( const PLAYER_INFO& playerInfo, const std::string& modelName )
+void CPlayer::SetPlayerParam( const CHARACTER_INFO& playerInfo, const std::string& modelName )
 {
-	m_vPosition		= playerInfo.vPosition;
-	m_vRotation		= playerInfo.vRotation;
-	m_ModelScale	= playerInfo.ModelScale;
-	m_ModelName		= modelName;
+	m_vPosition			= playerInfo.vPosition;
+	m_vRotation			= playerInfo.vRotation;
+	m_ModelScale		= playerInfo.ModelScale;
+	m_ModelName			= modelName;
 	m_SphereAdjPosition = playerInfo.vSphereAdjPosition;
 	m_SphereRadius		= playerInfo.SphereAdjRdius;
 }
