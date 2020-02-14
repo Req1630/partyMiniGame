@@ -18,7 +18,7 @@ private:
 	const ImVec2 WINDOW_SIZE				= { 350.0f, 350.0f };	// ウィンドウサイズ.
 	const ImVec2 RENDER_POSITION			= { 10.0f, 350.0f };	// 描画座標.
 	const float CHANGE_VALUE				= 0.001f;				// 変更用の値.
-	const char* CHARACTER_LIST_FILE_PATH	= "Data\\GameText\\CharacterList.txt";
+	const char* CHARACTER_LIST_FILE_PATH	= "Data\\GameText\\CharacterData\\CharacterList.txt";
 
 public:
 	CCharacterEdit();

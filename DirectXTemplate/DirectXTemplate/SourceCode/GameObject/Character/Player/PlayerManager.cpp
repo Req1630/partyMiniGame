@@ -92,7 +92,7 @@ void CPlayerManager::PlayerCreating()
 
 		CHARACTER_INFO playerInfo;
 		// プレイヤー情報の読込.
-		PlayerParameterReading( playerInfo, m_PlayModelList[i] );
+		CCharacter::CharacterParameterReading( playerInfo, m_PlayModelList[i] );
 		playerInfo.vPosition.x = m_InitPositionList[i].x;
 		playerInfo.vPosition.z = m_InitPositionList[i].z;
 		// プレイヤー情報設定.
@@ -106,7 +106,7 @@ void CPlayerManager::PlayerCreating()
 void CPlayerManager::PlayerInitPosReading()
 {
 	std::vector<std::string> readList;
-	readList = CFileManager::TextLoading( "Data\\GameText\\Player\\PlayerInitList.txt" );
+	readList = CFileManager::TextLoading( PLAYER_INIT_LIST_PATH );
 
 	// 取得したリストのサイズがなければ終了.
 	if( readList.empty() == true ) return;
@@ -122,27 +122,4 @@ void CPlayerManager::PlayerInitPosReading()
 		// 使用モデル名.
 		m_PlayModelList.emplace_back( readList[i+3] );
 	}
-}
-
-
-//-------------------------------.
-// プレイヤーパラメータの書き込み.
-//-------------------------------.
-void CPlayerManager::PlayerParameterWriting( const CHARACTER_INFO& playerInfo, std::string playerName )
-{
-	std::string path = CPlayerManager::PLAYER_PARAMETER_FILE_PATH;
-	path += playerName + CPlayerManager::PLAYER_PARAMETER_FILE_EXE;
-
-	CFileManager::BinaryWriting( path, playerInfo );
-}
-
-//-------------------------------.
-// プレイヤーパラメータの読み込み.
-//-------------------------------.
-void CPlayerManager::PlayerParameterReading( CHARACTER_INFO& playerInfo, std::string playerName )
-{
-	std::string path = CPlayerManager::PLAYER_PARAMETER_FILE_PATH;
-	path += playerName + CPlayerManager::PLAYER_PARAMETER_FILE_EXE;
-
-	CFileManager::BinaryReading( path, playerInfo );
 }

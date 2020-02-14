@@ -12,6 +12,7 @@ private:
 	typedef std::shared_ptr<CGameObject> pGameObject;
 
 public:
+	const char* PLAYER_INIT_LIST_PATH = "Data\\GameText\\Player\\PlayerInitList.txt";
 	inline static const char* PLAYER_PARAMETER_FILE_PATH	= "Data\\GameText\\Player\\";
 	inline static const char* PLAYER_PARAMETER_FILE_EXE		= ".data";
 
@@ -30,12 +31,6 @@ public:
 	std::shared_ptr<CPlayer> GetPlayer( const int index ) const;
 	// プレイヤーリストサイズ取得関数.
 	int GetPlayerSize() const { return m_PlayerList.size(); }
-
-
-	// プレイヤーパラメータの書き込み.
-	static void PlayerParameterWriting( const CHARACTER_INFO& playerInfo, std::string playerName );
-	// プレイヤーパラメータの読み込み.
-	static void PlayerParameterReading( CHARACTER_INFO& playerInfo, std::string playerName );
 
 private:
 	// プレイヤー同士の当たり判定.

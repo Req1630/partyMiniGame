@@ -4,3 +4,6 @@ MickeyMouse,ミッキー
 Sayaka,サヤカ
 SpongeBob,スポンジボブ
 Towa,トワ
+GhostA,走る敵
+GhostB,投げる敵
+HitoDama,弾

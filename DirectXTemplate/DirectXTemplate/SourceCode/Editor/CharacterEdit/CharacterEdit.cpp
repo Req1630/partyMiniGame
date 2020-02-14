@@ -183,7 +183,7 @@ void CCharacterEdit::CharacterParameterRender()
 void CCharacterEdit::CharacterParameterWriting()
 {
 	if( ImGui::Button( "Save" )){
-		CPlayerManager::PlayerParameterWriting( m_CharacterInfo, m_CharacterList[m_NowSelectModel] );
+		CCharacter::CharacterParameterWriting( m_CharacterInfo, m_CharacterList[m_NowSelectModel] );
 	}
 }
 
@@ -192,5 +192,5 @@ void CCharacterEdit::CharacterParameterWriting()
 //-------------------------------.
 void CCharacterEdit::CharacterParameterReading()
 {
-	CPlayerManager::PlayerParameterReading( m_CharacterInfo, m_CharacterList[m_NowSelectModel] );
+	CCharacter::CharacterParameterReading( m_CharacterInfo, m_CharacterList[m_NowSelectModel] );
 }
