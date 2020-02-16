@@ -2,7 +2,6 @@
 #define GAME_H
 
 #include "..\..\SceneBase\SceneBase.h"
-#include "..\..\..\Collider\Colliders\Sphere\SphereModel.h"
 
 class CStage;	// ステージクラス.
 class CGround;	// グラウンドクラス.

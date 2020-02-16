@@ -96,7 +96,7 @@ void CPlayerManager::PlayerCreating()
 		playerInfo.vPosition.x = m_InitPositionList[i].x;
 		playerInfo.vPosition.z = m_InitPositionList[i].z;
 		// ƒvƒŒƒCƒ„[î•ñÝ’è.
-		m_PlayerList[i]->SetPlayerParam( playerInfo, m_PlayModelList[i] );
+		m_PlayerList[i]->SetCharacterParam( playerInfo, m_PlayModelList[i] );
 	}
 }
 

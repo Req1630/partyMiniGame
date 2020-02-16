@@ -1,7 +1,7 @@
 #ifndef ENEMY_MANAGER_H
 #define ENEMY_MANAGER_H
 
-#include "..\..\..\GameObject.h"
+#include "..\EnemyBase.h"
 
 #include <vector>
 
@@ -27,7 +27,12 @@ public:
 	int GetEnemySize() const { return m_pEnemyList.size(); }
 
 private:
-	std::vector<std::shared_ptr<CGameObject>> m_pEnemyList;	// 敵リスト.
+	// 敵の作成.
+	void EnemyCreating();
+
+private:
+	std::vector<std::shared_ptr<CEnemyBase>> m_pEnemyList;	// 敵リスト.
+	int m_GameCount;	// ゲームカウント.
 };
 
 #endif	// #ifndef ENEMY_MANAGER_H.

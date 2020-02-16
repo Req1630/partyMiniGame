@@ -12,9 +12,6 @@ CPlayer::CPlayer()
 	, m_MoveVector			{ 0.0f, 0.0f } 
 	, m_MovePower			{ 0.0f, 0.0f } 
 	, m_PlayerNumber		( 0 )
-	, m_ModelName			("")
-	, m_SphereAdjPosition	{ 0.0f, 0.0f, 0.0f }
-	, m_SphereRadius		( 0.0f )
 {
 	// コライダークラスの作成.
 	m_pCollider = std::make_shared<CCollsionManager>();
@@ -64,11 +61,6 @@ void CPlayer::Render( SCENE_INFO& info )
 	m_pStaticMesh->Render( info.pCamera, *info.pLight );
 
 	m_pCollider->DebugRender( info.pCamera );
-
-	CDebugText::SetPosition( { 0.0f, 50.0f, 0.0f } );
-	CDebugText::Render( "pos_x : ", m_vPosition.x );
-	CDebugText::SetPosition( { 0.0f, 70.0f, 0.0f } );
-	CDebugText::Render( "pos_z : ", m_vPosition.z );
 }
 
 //-------------------------------------------.
@@ -136,17 +128,4 @@ void CPlayer::OutsideMove()
 void CPlayer::SetPlayerNumber( const int& playerNumber )
 { 
 	m_PlayerNumber = playerNumber; 
-}
-
-//-------------------------------------------.
-// プレイヤー情報の設定.
-//-------------------------------------------.
-void CPlayer::SetPlayerParam( const CHARACTER_INFO& playerInfo, const std::string& modelName )
-{
-	m_vPosition			= playerInfo.vPosition;
-	m_vRotation			= playerInfo.vRotation;
-	m_ModelScale		= playerInfo.ModelScale;
-	m_ModelName			= modelName;
-	m_SphereAdjPosition = playerInfo.vSphereAdjPosition;
-	m_SphereRadius		= playerInfo.SphereAdjRdius;
 }
