@@ -18,12 +18,17 @@ CRunEnemy::~CRunEnemy()
 void CRunEnemy::Update()
 {
 	if( m_pStaticMesh == nullptr ){
-		m_pStaticMesh = CMeshResorce::GetStatic( MODEL_NAME );
+		m_pStaticMesh = CMeshResorce::GetStatic( m_ModelName );
 	}
 
 	if( m_isAssailable == false ) return;
 
-	Move();
+//	Move();
+	if( GetAsyncKeyState(VK_UP) & 0x8000 )		m_vPosition.z -= 0.01f;
+	if( GetAsyncKeyState(VK_DOWN) & 0x8000 )	m_vPosition.z += 0.01f;
+	if( GetAsyncKeyState(VK_RIGHT) & 0x8000 )	m_vPosition.x -= 0.01f;
+	if( GetAsyncKeyState(VK_LEFT) & 0x8000 )	m_vPosition.x += 0.01f;
+
 }
 
 // ìñÇΩÇËîªíËä÷êî.
@@ -52,7 +57,4 @@ void CRunEnemy::Move()
 {
 	m_vPosition.x -= sinf( m_vRotation.y ) * 0.02f;
 	m_vPosition.z -= cosf( m_vRotation.y ) * 0.02f;
-	//if( m_vPosition.x <= 5.0f ){
-	//	m_vPosition.x += sinf( m_vRotation.y ) * 0.02f;
-	//}
 }

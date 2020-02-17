@@ -1,10 +1,16 @@
 #include "EnemyManager.h"
 #include "..\RunEnemy\RunEnemy.h"
+#include "..\..\..\..\Utility\FileManager\FileManager.h"
+#include "..\EnemyType.h"
 
 CEnemyManager::CEnemyManager()
-	: m_pEnemyList	()
-	, m_GameCount	( 0 )
+	: m_pEnemyList		()
+	, m_DirectionList	()
+	, m_InitPosList		()
+	, m_GameCount		( 0 )
 {
+	DirectionInfoReading();
+	InitPositionReading();
 	EnemyCreating();
 }
 
@@ -65,10 +71,39 @@ void CEnemyManager::EnemyCreating()
 
 	CHARACTER_INFO enemyInfo;
 	CCharacter::CharacterParameterReading( enemyInfo, "GhostA" );
+
 	// プレイヤー情報設定.
-	enemyInfo.vPosition.x = 13.0f;
+	enemyInfo.vPosition.x = 0.0f;
 	enemyInfo.vPosition.z = 0.0f;
-	enemyInfo.vRotation.y = D3DXToRadian(90.0f);
+	enemyInfo.vRotation.y = static_cast<float>(D3DXToRadian(90.0f));
+
 	m_pEnemyList[0]->SetCharacterParam( enemyInfo, "GhostA" );
 	m_pEnemyList[0]->SetAttackCount( 60 );
+}
+
+//---------------------------.
+// 方向情報の読み込み.
+//---------------------------.
+void CEnemyManager::DirectionInfoReading()
+{
+	std::vector<std::string> dirList;
+	dirList = CFileManager::TextLoading( ENEMY_DIRECTION_TEXT_PATH );
+
+	m_DirectionList.emplace_back( std::stof(dirList[static_cast<int>(enENEMY_DIRECTION::UP)]) );	// 上.
+	m_DirectionList.emplace_back( std::stof(dirList[static_cast<int>(enENEMY_DIRECTION::DOWN)]) );	// 下.
+	m_DirectionList.emplace_back( std::stof(dirList[static_cast<int>(enENEMY_DIRECTION::RIGHT)]) );	// 右.
+	m_DirectionList.emplace_back( std::stof(dirList[static_cast<int>(enENEMY_DIRECTION::LEFT)]) );	// 左.
+}
+
+//---------------------------.
+// 初期座標の読み込み.
+//---------------------------.
+void CEnemyManager::InitPositionReading()
+{
+	std::vector<std::string> posList;
+	posList = CFileManager::TextLoading( ENEMY_INIT_POS_TEXT_PATH );
+
+	for( const auto& l : posList ){
+		m_InitPosList.emplace_back( std::stof(l) );	// 各方向をfloatに変換していれる.
+	}
 }

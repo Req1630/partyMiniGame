@@ -41,9 +41,9 @@ void CCharacterEdit::Render( scene::CSceneBase::SCENE_INIT_INFO& info )
 	ImGui::End();
 }
 
-//-------------------------------.
+//------------------------------------.
 // プレイヤーリストの読み込み.
-//-------------------------------.
+//------------------------------------.
 void CCharacterEdit::CharacterListRead()
 {
 	std::vector<std::string> readList;
@@ -56,9 +56,9 @@ void CCharacterEdit::CharacterListRead()
 	}
 }
 
-//-------------------------------.
+//------------------------------------.
 // モデルの描画.
-//-------------------------------.
+//------------------------------------.
 void CCharacterEdit::ModelRender( scene::CSceneBase::SCENE_INIT_INFO& info )
 {
 	// メッシュの描画.
@@ -72,9 +72,9 @@ void CCharacterEdit::ModelRender( scene::CSceneBase::SCENE_INIT_INFO& info )
 	m_pCollder->DebugRender( info.pCamera );
 }
 
-//-------------------------------.
+//------------------------------------.
 // リストボックスの描画.
-//-------------------------------.
+//------------------------------------.
 void CCharacterEdit::ListBoxRender()
 {
 	// キャラクターリスト分動的確保.
@@ -106,9 +106,9 @@ void CCharacterEdit::ListBoxRender()
 	delete listBox;
 }
 
-//-------------------------------.
+//------------------------------------.
 // キャラクターの調整.
-//-------------------------------.
+//------------------------------------.
 void CCharacterEdit::AdjustmentPlayer()
 {
 	if( GetAsyncKeyState('O') & 0x8000 ){
@@ -150,9 +150,9 @@ void CCharacterEdit::AdjustmentPlayer()
 	}
 }
 
-//-------------------------------.
+//------------------------------------.
 // キャラクターパラメータ描画.
-//-------------------------------.
+//------------------------------------.
 void CCharacterEdit::CharacterParameterRender()
 {
 	// ドラッグでパラメータを変更.
@@ -177,9 +177,9 @@ void CCharacterEdit::CharacterParameterRender()
 	}
 }
 
-//-------------------------------.
+//------------------------------------.
 // キャラクターパラメータの書き込み.
-//-------------------------------.
+//------------------------------------.
 void CCharacterEdit::CharacterParameterWriting()
 {
 	if( ImGui::Button( "Save" )){
@@ -187,9 +187,9 @@ void CCharacterEdit::CharacterParameterWriting()
 	}
 }
 
-//-------------------------------.
+//------------------------------------.
 // キャラクターパラメータの読み込み.
-//-------------------------------.
+//------------------------------------.
 void CCharacterEdit::CharacterParameterReading()
 {
 	CCharacter::CharacterParameterReading( m_CharacterInfo, m_CharacterList[m_NowSelectModel] );

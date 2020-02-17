@@ -217,6 +217,7 @@
     <ClInclude Include="SourceCode\GameObject\Character\Character.h" />
     <ClInclude Include="SourceCode\GameObject\Character\Enemy\EnemyBase.h" />
     <ClInclude Include="SourceCode\GameObject\Character\Enemy\EnemyManager\EnemyManager.h" />
+    <ClInclude Include="SourceCode\GameObject\Character\Enemy\EnemyType.h" />
     <ClInclude Include="SourceCode\GameObject\Character\Enemy\RunEnemy\RunEnemy.h" />
     <ClInclude Include="SourceCode\GameObject\Character\Enemy\ShootEnemy\ShootEnemy.h" />
     <ClInclude Include="SourceCode\GameObject\Character\Player\Player.h" />

@@ -5,7 +5,6 @@
 
 class CRunEnemy : public CEnemyBase
 {
-	const char* MODEL_NAME = "GhostA";	// ƒ‚ƒfƒ‹–¼.
 public:
 	CRunEnemy();
 	virtual ~CRunEnemy();
