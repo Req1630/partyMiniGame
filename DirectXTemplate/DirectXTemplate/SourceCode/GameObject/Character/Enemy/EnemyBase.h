@@ -9,11 +9,13 @@ public:
 	CEnemyBase();
 	virtual ~CEnemyBase();
 
-	// 攻撃できるかどうか.
-	bool IsAssailable( const int& gameCount );
-	// 攻撃カウントの設定.
-	void SetAttackCount( const int& attackCount ){ m_AttackCount = attackCount; }
+	// 出現できるかどうか.
+	bool IsAppearance( const int& gameCount );
+	// 出現カウントの設定.
+	void SetAppearanceCount( const int& appearanceCount ){ m_AppearanceCount = appearanceCount; }
+
 protected:
+	int m_AppearanceCount;	// 出現カウント.
 	int m_AttackCount;		// 攻撃カウント.
 	bool m_isAssailable;	// 攻撃できるか.
 };

@@ -11,8 +11,10 @@ class CEnemyManager
 	typedef std::shared_ptr<CCollsionManager> pCollisionManager;
 
 private:
-	const char* ENEMY_DIRECTION_TEXT_PATH = "Data\\GameText\\Enemy\\EnemyDirection.txt";
-	const char* ENEMY_INIT_POS_TEXT_PATH = "Data\\GameText\\Enemy\\EnemyInitPos.txt";
+	const char* ENEMY_LIST_PATH				= "Data\\GameText\\Enemy\\EnemyList.csv";
+	const char* ENEMY_TYPE_LIST_PATH		= "Data\\GameText\\Enemy\\EnemyType.txt";
+	const char* ENEMY_DIRECTION_TEXT_PATH	= "Data\\GameText\\Enemy\\EnemyDirection.txt";
+	const char* ENEMY_INIT_POS_TEXT_PATH	= "Data\\GameText\\Enemy\\EnemyInitPos.txt";
 
 public:
 	CEnemyManager();

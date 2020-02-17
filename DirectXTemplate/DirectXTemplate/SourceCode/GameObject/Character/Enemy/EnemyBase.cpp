@@ -1,7 +1,8 @@
 #include "EnemyBase.h"
 
 CEnemyBase::CEnemyBase()
-	: m_AttackCount		( 0 )
+	: m_AppearanceCount	( 0 )
+	, m_AttackCount		( 0 )
 	, m_isAssailable	( false )
 {
 }
@@ -11,12 +12,12 @@ CEnemyBase::~CEnemyBase()
 }
 
 //--------------------------.
-// 攻撃できるかどうか.
+// 出現できるかどうか.
 //--------------------------.
-bool CEnemyBase::IsAssailable( const int& gameCount )
+bool CEnemyBase::IsAppearance( const int& gameCount )
 {
-	// ゲームカウントがアタックカウントより少なければ終了.
-	if( m_AttackCount >= gameCount ) return false;
+	// ゲームカウントが出現カウントより少なければ終了.
+	if( m_AppearanceCount >= gameCount ) return false;
 
 	// 多ければ true を入れて終了.
 	return m_isAssailable = true;

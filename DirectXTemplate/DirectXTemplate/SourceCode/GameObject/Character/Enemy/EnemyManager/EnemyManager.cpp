@@ -27,7 +27,7 @@ void CEnemyManager::Update()
 	
 	// 各敵の更新.
 	for( auto& e : m_pEnemyList ){
-		if( e->IsAssailable( m_GameCount ) == false ) continue;
+		if( e->IsAppearance( m_GameCount ) == false ) continue;
 		e->Update();
 	}
 }
@@ -46,7 +46,7 @@ void CEnemyManager::Render( SCENE_INFO& info )
 {
 	// 各敵の描画.
 	for( auto& e : m_pEnemyList ){
-		if( e->IsAssailable( m_GameCount ) == false ) continue;
+		if( e->IsAppearance( m_GameCount ) == false ) continue;
 		e->Render( info );
 	}
 }
@@ -57,7 +57,7 @@ void CEnemyManager::Render( SCENE_INFO& info )
 std::shared_ptr<CGameObject> CEnemyManager::GetEnemy( const int index ) const
 {
 	if( static_cast<size_t>( index ) >= m_pEnemyList.size() ) return nullptr;
-	if( m_pEnemyList[index]->IsAssailable( m_GameCount ) == false ) return nullptr;
+	if( m_pEnemyList[index]->IsAppearance( m_GameCount ) == false ) return nullptr;
 
 	return m_pEnemyList[index];
 }
@@ -67,18 +67,64 @@ std::shared_ptr<CGameObject> CEnemyManager::GetEnemy( const int index ) const
 //---------------------------.
 void CEnemyManager::EnemyCreating()
 {
-	m_pEnemyList.emplace_back( std::make_shared<CRunEnemy>() );
+	// 敵のリストの情報.
+	std::vector<std::string> enemyList;
+	enemyList = CFileManager::TextLoading( ENEMY_LIST_PATH );
+
+	// 敵のリスト.
+	std::vector<std::string> enemyTypeList;
+	enemyTypeList = CFileManager::TextLoading( ENEMY_TYPE_LIST_PATH );
 
 	CHARACTER_INFO enemyInfo;
-	CCharacter::CharacterParameterReading( enemyInfo, "GhostA" );
 
-	// プレイヤー情報設定.
-	enemyInfo.vPosition.x = 0.0f;
-	enemyInfo.vPosition.z = 0.0f;
-	enemyInfo.vRotation.y = static_cast<float>(D3DXToRadian(90.0f));
+	int enemyIndex = 0;
+	for( size_t i = 0;i < enemyList.size(); i+=4  ){
+		m_pEnemyList.emplace_back( std::make_shared<CRunEnemy>() );
 
-	m_pEnemyList[0]->SetCharacterParam( enemyInfo, "GhostA" );
-	m_pEnemyList[0]->SetAttackCount( 60 );
+		// 敵タイプの情報.
+		int type = std::stoi(enemyList[i]);
+		CCharacter::CharacterParameterReading( enemyInfo, enemyTypeList[type] );
+
+
+		// 移動する方向の設定.
+		int direction = std::stoi(enemyList[i+1]);
+		enemyInfo.vRotation.y = static_cast<float>( D3DXToRadian( m_DirectionList[direction] ) );
+
+		// 移動する方向による初期座標の設定.
+		enENEMY_DIRECTION dir = static_cast<enENEMY_DIRECTION>(direction);
+		switch( dir ){
+			case enENEMY_DIRECTION::UP:
+				// プレイヤー情報設定.
+				enemyInfo.vPosition.x = m_InitPosList[std::stoi( enemyList[i+2] )];
+				enemyInfo.vPosition.z = 13.0f;
+				break;
+			case enENEMY_DIRECTION::DOWN:
+				// プレイヤー情報設定.
+				enemyInfo.vPosition.x = m_InitPosList[std::stoi( enemyList[i+2] )];
+				enemyInfo.vPosition.z = -13.0f;
+				break;
+			case enENEMY_DIRECTION::RIGHT:
+				// プレイヤー情報設定.
+				enemyInfo.vPosition.x = 13.0f;
+				enemyInfo.vPosition.z = m_InitPosList[std::stoi( enemyList[i+2] )];
+				break;
+			case enENEMY_DIRECTION::LEFT:
+				// プレイヤー情報設定.
+				enemyInfo.vPosition.x = -13.0f;
+				enemyInfo.vPosition.z = m_InitPosList[std::stoi( enemyList[i+2] )];
+				break;
+			default:
+				break;
+		}
+
+		// 各情報の設定.
+		m_pEnemyList[enemyIndex]->SetCharacterParam( enemyInfo, enemyTypeList[type] );
+
+		// 出現カウントの設定.
+		m_pEnemyList[enemyIndex]->SetAppearanceCount( std::stoi(enemyList[i+3]) );
+
+		enemyIndex++;
+	}
 }
 
 //---------------------------.
